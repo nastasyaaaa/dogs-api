@@ -26,10 +26,7 @@ class Utils {
 	makeList(breeds) {
 
 		this.rawBreeds = breeds;
-
-		for(let breed in breeds){
-			this.breeds.push( breed );
-		}
+		this.breeds = Object.keys(breeds);
 
 		document.getElementById('list').appendChild(this.createBreedList(this.breeds));
 	};
