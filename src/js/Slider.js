@@ -1,4 +1,4 @@
-class SliderManager {
+export class SliderManager {
 
 	constructor() {
 		this.slideIndex = 1;

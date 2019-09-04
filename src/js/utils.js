@@ -1,13 +1,11 @@
-class Utils {
+import {SliderManager} from "./Slider"
 
-	constructor() {
-		this.rawBreeds = [];
-		this.breeds = [];
+export const utils = {
 
-	};
+	rawBreeds :  [],
+	breeds :  [],
 
-
-	makeRequest(url) {
+	makeRequest : function(url){
 
 		return new Promise((resolve, reject) => {
 
@@ -21,17 +19,17 @@ class Utils {
 				resolve(xhr.response.message);
 			};
 		});
-	};
+	},
 
-	makeList(breeds) {
+	makeList : function(breeds) {
 
 		this.rawBreeds = breeds;
 		this.breeds = Object.keys(breeds);
 
 		document.getElementById('list').appendChild(this.createBreedList(this.breeds));
-	};
+	},
 
-	createBreedList(breeds, parent = null) {
+	createBreedList : function(breeds, parent = null) {
 
 		let ul = document.createElement('ul');
 
@@ -62,10 +60,9 @@ class Utils {
 
 
 		return ul;
-	}
+	},
 
-
-	showDogCard(breed, images) {
+	showDogCard : function(breed, images) {
 
 		const sliderContainer = document.getElementsByClassName('slider-container')[0];
 		const imageContainer = document.getElementById('image-container');
@@ -83,7 +80,5 @@ class Utils {
 		sliderContainer.appendChild(sliderManager.makeSlider(images));
 
 		title.innerText = breed.charAt(0).toUpperCase() + breed.slice(1);
-	};
-	
-	
-}
+	}
+};

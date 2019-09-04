@@ -1,25 +1,3 @@
-.wrapper{
-	margin: 10px;
-}
-.list-group{
-    width: 100%;
-    max-height: 700px;
-    margin-bottom: 10px;
-    overflow:scroll;
-    -webkit-overflow-scrolling: touch;
-}
-
-
-li{
-    list-style: none;
-    border: 1px solid rgba(0,0,0,.125);
-    padding: .75rem 1.25rem;
-    margin-bottom: -1px;
-    margin-left: -40px;
-    background-color: #fff;
-    cursor: pointer;
-}
-
 
 /* SLIDER */
 
@@ -41,7 +19,7 @@ li{
 .slider .prev, .slider .next {
     cursor: pointer;
     position: absolute;
-    top: 0;
+    /*top: 0;*/
     top: 50%;
     width: auto;
     margin-top: -22px;
