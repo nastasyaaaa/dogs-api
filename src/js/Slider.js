@@ -2,7 +2,7 @@ export class SliderManager {
 
 	constructor() {
 		this.slideIndex = 1;
-	};
+	}
 
 	makeSlider(images) {
 
@@ -25,36 +25,42 @@ export class SliderManager {
 			slider.appendChild(item);	
 		}
 
-
-		const nextBtn = document.createElement('a');
-		const lastBtn = document.createElement('a'); 
-		
-		lastBtn.innerText = '<';
-		nextBtn.innerText = '>';
-
-		lastBtn.classList.add('prev');
-		nextBtn.classList.add('next');
-
-
-		lastBtn.addEventListener('click', this.lastBtnClick.bind(this));
-		nextBtn.addEventListener('click', this.nextBtnClick.bind(this));
-
-
-		slider.appendChild(lastBtn);
-		slider.appendChild(nextBtn);
+		slider.appendChild(this.makeLastBtn());
+		slider.appendChild(this.makeNextBtn());
 
 
 		return slider;
+	}
 
-	};
+	makeLastBtn()
+	{
+		const lastBtn = document.createElement('a');
+
+		lastBtn.innerText = '<';
+		lastBtn.classList.add('prev');
+		lastBtn.addEventListener('click', this.lastBtnClick.bind(this));
+
+		return lastBtn;
+	}
+
+	makeNextBtn()
+	{
+		const nextBtn = document.createElement('a');
+
+		nextBtn.innerText = '>';
+		nextBtn.classList.add('next');
+		nextBtn.addEventListener('click', this.nextBtnClick.bind(this));
+
+		return nextBtn;
+	}
 
 	lastBtnClick(event) {
 		this.showSlides(this.slideIndex -= 1);  
-	};
+	}
 
 	nextBtnClick(event) {
 		this.showSlides(this.slideIndex += 1);  
-	};
+	}
 
 	showSlides(n)  {
 		let slides = document.getElementsByClassName("item");
@@ -71,7 +77,7 @@ export class SliderManager {
 		}
 
 		slides[this.slideIndex - 1].style.display = "block";
-	};
+	}
 
 
 }

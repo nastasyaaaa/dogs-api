@@ -1,43 +1,48 @@
-import {utils} from "./utils";
+import {Utils} from "./Utils";
+
+const utils = new Utils();
+
+export const handler = {
+
+    onBreedClick: function (event) {
+
+        event.preventDefault();
+        const target = event.target;
+
+        if (target.classList.contains('js-show-images')) {
+
+            const breed = event.target.innerText;
+
+            if (target.dataset.parentBreed) {
+                const parentBreed = target.dataset.parentBreed;
+
+                utils.makeRequest(`https://dog.ceo/api/breed/${parentBreed}/${breed}/images/random/10`)
+                    .then((images) => utils.showDogCard(`${parentBreed}  ${breed}`, images));
+            } else {
+
+                utils.makeRequest(`https://dog.ceo/api/breed/${breed}/images/random/10`)
+                    .then((images) => utils.showDogCard(breed, images));
+            }
+        }
+
+    },
 
 
-export function onBreedClick(event) {
+    onSearchKeyUp: function (event) {
 
-	event.preventDefault();
-	const target = event.target;
+        const target = event.target;
+        const search = target.value;
 
-	if(target.classList.contains('js-show-images')){
+        let breeds = document.getElementById('list').firstChild.children;
 
-		const breed = event.target.innerText;
+        for (let i = 0; i < breeds.length; i++) {
 
-		if(target.dataset.parentBreed){
-			const parentBreed = target.dataset.parentBreed;
+            if (breeds[i].innerText.search(search) === -1 && search) {
+                breeds[i].style.display = 'none';
+            } else {
+                breeds[i].style.display = 'block';
+            }
 
-			utils.makeRequest(`https://dog.ceo/api/breed/${parentBreed}/${breed}/images/random/10`)
-				.then( (images) => utils.showDogCard(`${parentBreed}  ${breed}`, images) );
-		}else{
-
-			utils.makeRequest(`https://dog.ceo/api/breed/${breed}/images/random/10`)
-				.then( (images) => utils.showDogCard(breed, images) );
-		}
-	}
-
-}
-
-export function onSearchKeyUp(event) {
-
-	const target = event.target;
-	const search = target.value;
-
-	let breeds = document.getElementById('list').firstChild.children;
-
-	for(let i = 0; i < breeds.length; i++){
-
-		if(breeds[i].innerText.search(search) === -1 && search){
-			breeds[i].style.display = 'none';
-		}else{
-			breeds[i].style.display = 'block';
-		}
-
-	}
+        }
+    }
 }

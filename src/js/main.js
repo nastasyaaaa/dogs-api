@@ -1,9 +1,11 @@
 import "../css/styles.css"
-import {onBreedClick, onSearchKeyUp} from "./handler"
-import {utils} from "./utils"
+import {handler} from "./handler"
+import {Utils} from "./Utils"
+
+const utils = new Utils();
 
 // add event listeners
-document.getElementById('list').addEventListener('click', onBreedClick);
+document.getElementById('list').addEventListener('click', handler.onBreedClick);
 
 
 utils.makeRequest('https://dog.ceo/api/breeds/list/all')
@@ -14,5 +16,5 @@ utils.makeRequest('https://dog.ceo/api/breeds/list/all')
 
 
 const search = document.querySelector('input[name=search]');
-search.addEventListener('keyup', onSearchKeyUp);
+search.addEventListener('keyup', handler.onSearchKeyUp);
 
